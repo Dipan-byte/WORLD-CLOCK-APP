@@ -9,7 +9,8 @@ class World_time {
   World_time({required this.location , required this.flag , required this.url});
 
   Future <void> getTime()async{
-    Response response = await get(Uri.parse('https://worldtimeapi.org/api/timezone/$url')) ;
+    try{
+       Response response = await get(Uri.parse('https://worldtimeapi.org/api/timezone/$url')) ;
  
     Map data = jsonDecode(response.body);
     //print(data) ;
@@ -26,4 +27,10 @@ class World_time {
     //set the time 
     time = now.toString();
   }
+  catch (e){
+    print('cought the error : $e');
+    time = 'could not fetch the time ' ;
+  }
+    }
+   
 }
