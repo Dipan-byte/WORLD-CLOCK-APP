@@ -17,7 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       'location' : instance.location ,
       'flag':instance.flag ,
       'time':instance.time ,
-      'isDayTime': instance.isDaytime ,
+      'isDaytime': instance.isDaytime ,
     });
   }
   @override

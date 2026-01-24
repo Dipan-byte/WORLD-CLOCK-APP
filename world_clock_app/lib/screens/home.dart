@@ -12,16 +12,17 @@ class _HomeState extends State<Home> {
     void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final route = ModalRoute.of(context);
+    if(data.isEmpty){final route = ModalRoute.of(context);
     if (route != null) {
       data = route.settings.arguments as Map;
        print(data);
     }
   }
+    }
   
   @override
   Widget build(BuildContext context){
-    String bgImage = data['isDayTime'] ? 'day.jpeg' : 'night.jpg' ;
+    String bgImage = data['isDaytime'] ? 'day.jpeg' : 'night.jpg' ;
     return Scaffold(
       body : Container(
         decoration: BoxDecoration(
@@ -36,8 +37,16 @@ class _HomeState extends State<Home> {
             child: Column(
               children: <Widget>[
                 ElevatedButton.icon(
-                  onPressed : () {
-                    Navigator.pushNamed(context, '/location') ;
+                  onPressed : () async{
+                    dynamic result = await Navigator.pushNamed(context, '/location') ;
+                    setState(() {
+                      data = {
+                        'time' : result['time'],
+                        'location': result['location'] ,
+                        'isDaytime': result['isDaytime'],
+                        'flag': result['flag'],
+                      };
+                    });
                   } ,
                   icon: Icon(Icons.edit_location) ,
                   label: Text('edit location')
@@ -48,6 +57,7 @@ class _HomeState extends State<Home> {
                       data['location'],
                       style: TextStyle(
                         fontSize: 30.0 ,
+                        color: Colors.white ,
                                           ),
                     ),
         
@@ -58,6 +68,7 @@ class _HomeState extends State<Home> {
                   data['time'] ,
                   style: TextStyle(
                         fontSize: 30.0 ,
+                        color: Colors.white ,
                                           ),
                 )
               ],
