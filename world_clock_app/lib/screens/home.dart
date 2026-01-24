@@ -7,6 +7,18 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
+  Map data ={} ;
+    @override
+    void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final route = ModalRoute.of(context);
+    if (route != null) {
+      data = route.settings.arguments as Map;
+       print(data);
+    }
+  }
+ 
   @override
   Widget build(BuildContext context){
     return Scaffold(

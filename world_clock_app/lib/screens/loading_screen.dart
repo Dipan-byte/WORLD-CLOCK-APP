@@ -12,10 +12,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void setupWorldTime() async{
      World_time instance =World_time(location: 'Berlin', flag: 'flag.png', url: 'Europe/Berlin');
      await instance.getTime();
-     print(instance.time);
-     setState(() {
-       time= instance.time ;
-     });
+    Navigator.pushReplacementNamed(context, '/home' , arguments: {
+      'location' : instance.location ,
+      'flag':instance.flag ,
+      'time':instance.time ,
+    });
   }
   @override
   void initState() {

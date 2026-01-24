@@ -29,7 +29,7 @@ class World_time {
   }
   catch (e){
     print('cought the error : $e');
-    time = 'could not fetch the time ' ;
+    // time = 'could not fetch the time ' ;
   }
     }
    
