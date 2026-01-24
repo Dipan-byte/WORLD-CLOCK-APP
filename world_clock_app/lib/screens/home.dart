@@ -22,13 +22,38 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body : Center(
-        child: ElevatedButton.icon(
-          onPressed : () {
-            Navigator.pushNamed(context, '/location') ;
-          } ,
-          icon: Icon(Icons.edit_location) ,
-          label: Text('edit location')
+      body : Padding(
+        padding: EdgeInsetsGeometry.fromLTRB(30.0, 120.0, 30.0, 0.0),
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              ElevatedButton.icon(
+                onPressed : () {
+                  Navigator.pushNamed(context, '/location') ;
+                } ,
+                icon: Icon(Icons.edit_location) ,
+                label: Text('edit location')
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    data['location'],
+                    style: TextStyle(
+                      fontSize: 30.0 ,
+                                        ),
+                  ),
+
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Text(
+                data['time'] ,
+                style: TextStyle(
+                      fontSize: 30.0 ,
+                                        ),
+              )
+            ],
+          )
         ),
       ) ,
     ) ;

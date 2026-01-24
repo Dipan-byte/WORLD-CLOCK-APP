@@ -8,7 +8,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  String time = 'loading' ;
+  String showing = 'loading' ;
   void setupWorldTime() async{
      World_time instance =World_time(location: 'Berlin', flag: 'flag.png', url: 'Europe/Berlin');
      await instance.getTime();
@@ -28,7 +28,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
        body: Padding(
         padding: EdgeInsetsGeometry.all(50.0) ,
-        child: Text(time),
+        child: Text(showing),
        )
 
     );

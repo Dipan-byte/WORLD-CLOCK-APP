@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 class World_time {
   String location ; //name for the ui
-  late String time ; // the time in that location 
+   String time = 'loding' ; // the time in that location 
   String flag ; // url to an asset flag icon 
   String url ; // location url for api end point 
   World_time({required this.location , required this.flag , required this.url});
@@ -25,7 +26,7 @@ class World_time {
     DateTime now = DateTime.parse(datetime);
     now = now.add(Duration(hours: int.parse(offset)));
     //set the time 
-    time = now.toString();
+    time = DateFormat.jm().format(now).toString();
   }
   catch (e){
     print('cought the error : $e');
