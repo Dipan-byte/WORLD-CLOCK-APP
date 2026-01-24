@@ -4,9 +4,10 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 class World_time {
   String location ; //name for the ui
-   String time = 'loding' ; // the time in that location 
+  String time = 'loding' ; // the time in that location 
   String flag ; // url to an asset flag icon 
   String url ; // location url for api end point 
+  bool isDaytime = true ;
   World_time({required this.location , required this.flag , required this.url});
 
   Future <void> getTime()async{
@@ -26,6 +27,7 @@ class World_time {
     DateTime now = DateTime.parse(datetime);
     now = now.add(Duration(hours: int.parse(offset)));
     //set the time 
+    isDaytime = now.hour>6 && now.hour<18 ? true : false  ;
     time = DateFormat.jm().format(now).toString();
   }
   catch (e){
